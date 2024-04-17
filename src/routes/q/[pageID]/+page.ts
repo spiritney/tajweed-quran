@@ -1,13 +1,13 @@
 import { END_of_AYAH } from "$lib/constants";
 import { source } from "$lib/data/source";
 import { addTajweed } from "$lib/functions/addTajweed";
-import type { PageServerLoad } from "./$types";
 
 export const ssr = false
 
+
 const pagesWithoutScale = [-1]
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load = async ({ params }) => {
 
     let mainHTML = ``;
 
