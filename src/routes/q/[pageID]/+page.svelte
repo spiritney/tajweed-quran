@@ -23,6 +23,8 @@
 			if (localStorage.getItem(GLOBAL_STYLES_ATTR_BODY) === 'true') {
 				addGlobalStyles();
 			}
+			// add by default
+			addFixScale();
 			if (localStorage.getItem(FIX_SCALE_ATTR_BODY) === 'true') {
 				if (!withoutScale) {
 					addFixScale();
