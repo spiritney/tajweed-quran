@@ -1,0 +1,164 @@
+:root {
+	--w: 380px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@font-face {
+	font-family: 'KFGQPC QALOON Uthmanic Script';
+	src: url('$lib/fonts/USED/original-hafs-SVG.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	font-size: 1cm;
+	font-family: 'KFGQPC QALOON Uthmanic Script';
+
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased !important;
+	-moz-font-smoothing: antialiased !important;
+	text-rendering: optimizelegibility !important;
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: start;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+.hider {
+	background-color: rgb(255, 255, 255);
+	padding-inline: 25px;
+	padding-block: 1cm;
+	/* cursor: pointer; */
+}
+
+.wrapper {
+	background-color: white;
+	padding-inline: 25px;
+	padding-block: 15px;
+	margin: 25px;
+	/* cursor: pointer; */
+	/* border: 1px solid rgba(0, 0, 0, 0.1); */
+}
+
+main {
+	position: relative;
+	width: var(--w);
+	text-align: justify;
+	background-color: white;
+}
+
+main.firstPage {
+	width: var(--w);
+	direction: rtl;
+	/* background: aliceblue; */
+}
+
+.basmalah {
+	position: relative;
+	display: block;
+	width: var(--w);
+	direction: rtl;
+	white-space: nowrap;
+	transform-origin: top right;
+}
+
+.ayah {
+	position: relative;
+	display: block;
+	width: var(--w);
+	direction: rtl;
+	white-space: nowrap;
+	transform-origin: top right;
+}
+
+.inner-ayah {
+	position: relative;
+	display: block;
+	/* background: #186f447b; */
+	width: 100%;
+	direction: rtl;
+	white-space: nowrap;
+	transform-origin: top right;
+}
+
+.inner-ayah.without-scale {
+	display: flex;
+	justify-content: space-between;
+}
+
+.kalemah {
+	/* background: #186f447b; */
+	/* padding-right: 0.05cm; */
+}
+
+.basmalah .inner-ayah {
+	justify-content: center !important;
+	gap: 0.25cm;
+}
+
+.mask {
+	display: block;
+	direction: rtl;
+	white-space: nowrap;
+	transform-origin: top right;
+}
+
+.ayahNumber {
+	margin: 4px;
+	color: #00000043;
+	font-size: 0.75cm;
+}
+
+.madd-jawaz {
+	color: #f36123;
+}
+
+.madd-lazem {
+	color: #f02020;
+}
+
+.taf5im-erraa {
+	color: rgb(0, 87, 141);
+}
+
+.edgham {
+	color: #9fa099;
+}
+
+.ghona {
+	color: #22b127;
+}
+
+.el9al9ala {
+	color: #0095eb;
+}
+
+.basmalah {
+	text-align: center;
+}
+
+kbd,
+.kbd {
+	background-color: #eee;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 3px 5px;
+	font-family:
+		monospace,
+		courier new,
+		monospace;
+}
