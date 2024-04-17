@@ -4,7 +4,6 @@ import { addTajweed } from "$lib/functions/addTajweed";
 
 export const ssr = false
 
-
 const pagesWithoutScale = [-1]
 
 export const load = async ({ params }) => {
