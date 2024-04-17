@@ -1,3 +1,5 @@
+import { countOccurrences } from "$lib/client/utils/countOccurrences";
+import { getPureText } from "$lib/client/utils/getPureText";
 import { alTachkieel, el7roufAlAbjadiyaWithoutelYaa, el7roufElEst3laa, kasra, taf5imErraaClassName } from "$lib/constants";
 import { taf5imErra7roufEst3laa1 } from "./taf5imErra7roufEst3laa1";
 
@@ -5,62 +7,93 @@ export function taf5imErraa(_text: string) {
     let text = _text;
 
 
+    // console.log(text);
+    
     // تفخم الراء في الأحوال التالية:
 
     // إذا كانت مفتوحة، ...مثل: (رَحمة) 
     const searchtaf5imErraa1 = `رَ`;
-    if (text.includes(searchtaf5imErraa1)) {
+    if (getPureText(text).includes(searchtaf5imErraa1)) {
+       
+        
         text = text.replaceAll(
             searchtaf5imErraa1,
-            `<span_class="${taf5imErraaClassName}">${searchtaf5imErraa1}</span>`
+            `<span_attr-qn="1"_class="${taf5imErraaClassName}">${searchtaf5imErraa1}</span>`
         );
+    }
+    if (getPureText(text).includes(searchtaf5imErraa1) && !text.includes(searchtaf5imErraa1)) {
+        alert("please fix searchtaf5imErraa1" + " - " + text)
+        const msg = `
+        searchtaf5imErraa1: ${searchtaf5imErraa1}
+        text: ${text}
+        text.includes(searchtaf5imErraa1): ${text.includes(searchtaf5imErraa1)}
+        getPureText(text): ${getPureText(text)}
+        <span_attr-qn="1"_class="${taf5imErraaClassName}">${searchtaf5imErraa1}</span>
+
+        `
+        console.log(msg);
     }
 
     // أو مشددة مثل: (الرَّاشدون).
     const searchtaf5imErraa2 = `رََّ`;
-    if (text.includes(searchtaf5imErraa2)) {
+    if (getPureText(text).includes(searchtaf5imErraa2)) {
         text = text.replaceAll(
             searchtaf5imErraa2,
-            `<span_class="${taf5imErraaClassName}">${searchtaf5imErraa2}</span>`
+            `<span_attr-qn="2"_class="${taf5imErraaClassName}">${searchtaf5imErraa2}</span>`
         );
+    }
+    if (getPureText(text).includes(searchtaf5imErraa2) && !text.includes(searchtaf5imErraa2)) {
+        alert("please fix searchtaf5imErraa2" + " - " + text)
     }
 
     // إذا كانت مضمومة، مثل: (رُمّان ـ رُزقوا ـ الرُّكَّع).
     const searchtaf5imErraa3 = `رُ`;
-    if (text.includes(searchtaf5imErraa3)) {
+    if (getPureText(text).includes(searchtaf5imErraa3)) {
         text = text.replaceAll(
             searchtaf5imErraa3,
-            `<span_class="${taf5imErraaClassName}">${searchtaf5imErraa3}</span>`
+            `<span_attr-qn="3"_class="${taf5imErraaClassName}">${searchtaf5imErraa3}</span>`
         );
+    }
+    if (getPureText(text).includes(searchtaf5imErraa3) && !text.includes(searchtaf5imErraa3)) {
+        alert("please fix searchtaf5imErraa3" + " - " + text)
     }
 
     // إذا كانت ساكنة بعد ضم،... مثل: (غُرْفة).
     //
     const searchtaf5imErraa4 = `ُرْ`;
-    if (text.includes(searchtaf5imErraa4)) {
+    if (getPureText(text).includes(searchtaf5imErraa4)) {
         text = text.replaceAll(
             searchtaf5imErraa4,
-            `ُ<span_class="${taf5imErraaClassName}">رْ</span>`
+            `ُ<span_attr-qn="4"_class="${taf5imErraaClassName}">رْ</span>`
         );
+    }
+    if (getPureText(text).includes(searchtaf5imErraa4) && !text.includes(searchtaf5imErraa4)) {
+        alert("please fix searchtaf5imErraa4" + " - " + text)
     }
 
 
     // إذا كانت ساكنة بعد فتح،... مثل: (قَرْية).
     const searchtaf5imErraa5 = `َرْ`;
-    if (text.includes(searchtaf5imErraa5)) {
+    if (getPureText(text).includes(searchtaf5imErraa5)) {
         text = text.replaceAll(
             searchtaf5imErraa5,
-            `َ<span_class="${taf5imErraaClassName}">رْ</span>`
+            `َ<span_attr-qn="5"_class="${taf5imErraaClassName}">رْ</span>`
         );
+    }
+    if (getPureText(text).includes(searchtaf5imErraa5) && !text.includes(searchtaf5imErraa5)) {
+        alert("please fix searchtaf5imErraa5" + " - " + text)
     }
 
     // إذا كانت ساكنة بعد كسر عارض،... مثل: (ارْجعوا _ أمِ ارْتابوا).
     const searchtaf5imErraa6 = `ارْ`;
-    if (text.includes(searchtaf5imErraa6)) {
+    if (getPureText(text).includes(searchtaf5imErraa6)) {
         text = text.replaceAll(
             searchtaf5imErraa6,
-            `ا<span_class="${taf5imErraaClassName}">رْ</span>`
+            `ا<span_attr-qn="6"_class="${taf5imErraaClassName}">رْ</span>`
         );
+    }
+    if (getPureText(text).includes(searchtaf5imErraa6) && !text.includes(searchtaf5imErraa6)) {
+        alert("please fix searchtaf5imErraa6" + " - " + text)
     }
 
 
@@ -77,11 +110,14 @@ export function taf5imErraa(_text: string) {
     // هذا المثال ليس فيه تشكيل
     el7roufAlAbjadiyaWithoutelYaa.forEach((el) => {
         const searchtaf5imErraa8 = `${el}${''}رْ`
-        if (text.includes(searchtaf5imErraa8)) {
+        if (getPureText(text).includes(searchtaf5imErraa8)) {
             text = text.replaceAll(
                 searchtaf5imErraa8,
-                `${el}${''}<span_class="${taf5imErraaClassName}">رْ</span>`
+                `${el}${''}<span_attr-qn="7"_class="${taf5imErraaClassName}">رْ</span>`
             );
+        }
+        if (getPureText(text).includes(searchtaf5imErraa8) && !text.includes(searchtaf5imErraa8)) {
+            alert("please fix searchtaf5imErraa8 المثال ليس فيه تشكيل" + " - " + text)
         }
     })
 
@@ -89,12 +125,34 @@ export function taf5imErraa(_text: string) {
     el7roufAlAbjadiyaWithoutelYaa.forEach((el) => {
         alTachkieel.forEach((tachkeel) => {
             const searchtaf5imErraa8 = `${el}${tachkeel}ر`
-            if (text.includes(searchtaf5imErraa8)) {
+
+            if (getPureText(text).includes(searchtaf5imErraa8)) {
+
+                if (!text.includes(searchtaf5imErraa8) && countOccurrences(getPureText(text), searchtaf5imErraa8) > 1) {
+                    console.log(getPureText(text).includes(searchtaf5imErraa8));
+                    console.log(text.includes(searchtaf5imErraa8));
+                    console.log(countOccurrences(getPureText(text), searchtaf5imErraa8));
+
+                    const msg = `please fix searchtaf5imErraa8
+                    المثال بالتشكيل
+                    el7roufAlAbjadiyaWithoutelYaa: ${el}
+                    tachkeel: ${tachkeel}
+                    searchtaf5imErraa8: ${searchtaf5imErraa8}
+                    getPureText(text): ${getPureText(text)}
+                    text: ${text}
+                    `
+                    // const msg = "please fix searchtaf5imErraa8 المثال بالتشكيل" + " - \n" + getPureText(text) + " - \n" + text
+                    console.error(msg);
+                    // alert(msg)
+                }
+
                 text = text.replaceAll(
                     searchtaf5imErraa8,
-                    `${el}${tachkeel}<span_class="${taf5imErraaClassName}">رْ</span>`
+                    `${el}${tachkeel}<span_attr-qn="8"_class="${taf5imErraaClassName}">ر</span>`
                 );
             }
+
+
         })
     })
 
@@ -108,10 +166,10 @@ export function taf5imErraa(_text: string) {
     el7roufElEst3laa.forEach((el7arfElEst3laa) => {
         alTachkieel.filter((tachkeel) => tachkeel !== kasra).forEach((tachkeel) => {
             const searchtaf5imErraa9 = `${kasra}رْ${el7arfElEst3laa}${tachkeel}`
-            if (text.includes(searchtaf5imErraa9)) {
+            if (getPureText(text).includes(searchtaf5imErraa9)) {
                 text = text.replaceAll(
                     searchtaf5imErraa9,
-                    `${kasra}<span_class="${taf5imErraaClassName}">رْ</span>${el7arfElEst3laa}${tachkeel}`
+                    `${kasra}<span_attr-qn="9"_class="${taf5imErraaClassName}">رْ</span>${el7arfElEst3laa}${tachkeel}`
                 );
             }
         })

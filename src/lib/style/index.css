@@ -22,7 +22,7 @@ html {
 body {
 	font-size: 1cm;
 	font-family: 'KFGQPC QALOON Uthmanic Script';
-
+	letter-spacing: 1px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased !important;
 	-moz-font-smoothing: antialiased !important;
