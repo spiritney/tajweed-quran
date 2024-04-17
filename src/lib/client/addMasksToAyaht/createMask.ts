@@ -25,61 +25,61 @@ export const createMask = (index: number) => {
     let currentMouseX = 0;
     mask.setAttribute('current_percentage', "100");
 
-    // // Function to update background property
-    // function updateBackground(ID: string, percentage: number) {
-    //     const elem = document.getElementById(ID);
-    //     if (elem === null) return;
+    // Function to update background property
+    function updateBackground(ID: string, percentage: number) {
+        const elem = document.getElementById(ID);
+        if (elem === null) return;
 
-    //     const currentPercentageAttr = elem.getAttribute('current_percentage');
+        const currentPercentageAttr = elem.getAttribute('current_percentage');
 
-    //     if (currentPercentageAttr !== null) {
-    //         if (+currentPercentageAttr > percentage) {
-    //             elem.style.background = getBgTransperncy(percentage);
-    //             elem.setAttribute('current_percentage', String(percentage));
-    //             if (percentage > 0 && percentage <= 15) {
-    //                 elem.style.background = getBgTransperncy(0);
-    //                 elem.setAttribute('current_percentage', String(0));
-    //             }
-    //         }
-    //     }
-    // }
+        if (currentPercentageAttr !== null) {
+            if (+currentPercentageAttr > percentage) {
+                elem.style.background = getBgTransperncy(percentage);
+                elem.setAttribute('current_percentage', String(percentage));
+                if (percentage > 0 && percentage <= 15) {
+                    elem.style.background = getBgTransperncy(0);
+                    elem.setAttribute('current_percentage', String(0));
+                }
+            }
+        }
+    }
 
-    // //
-    // // Add event listener for mousemove event
-    // mask.addEventListener('mousemove', (e) => {
-    //     // Update current mouse position 
-    //     currentMouseX = e.pageX;
+    //
+    // Add event listener for mousemove event
+    mask.addEventListener('mousemove', (e) => {
+        // Update current mouse position 
+        currentMouseX = e.pageX;
 
-    //     // if (getGlobalActiveLine() !== String(NUM)) {
-    //     //     setGlobalActiveLine(NUM);
-    //     // }
+        // if (getGlobalActiveLine() !== String(NUM)) {
+        //     setGlobalActiveLine(NUM);
+        // }
 
-    //     // Calculate mouse movement direction
-    //     const mouseMovementDirection = prevMouseX > currentMouseX ? -1 : 1;
+        // Calculate mouse movement direction
+        const mouseMovementDirection = prevMouseX > currentMouseX ? -1 : 1;
 
-    //     // Update background property based on mouse movement direction
-    //     if (mouseMovementDirection === -1) {
-    //         // const width = getComputedStyle(mask).width;
-    //         // console.log(width);
+        // Update background property based on mouse movement direction
+        if (mouseMovementDirection === -1) {
+            // const width = getComputedStyle(mask).width;
+            // console.log(width);
 
-    //         const mouseX = e.clientX;
-    //         // console.log('mouseX:', mouseX);
+            const mouseX = e.clientX;
+            // console.log('mouseX:', mouseX);
 
-    //         const { minX, maxX } = getBoundriesPage();
+            const { minX, maxX } = getBoundriesPage();
 
-    //         const diffX = maxX - minX;
-    //         const percentage = ((mouseX - minX) / diffX) * 100;
-    //         const fixedPercentage = Math.round(Math.abs(percentage));
+            const diffX = maxX - minX;
+            const percentage = ((mouseX - minX) / diffX) * 100;
+            const fixedPercentage = Math.round(Math.abs(percentage));
 
-    //         const clampedPercentage = Math.min(Math.max(fixedPercentage, 0), 100);
-    //         // console.log(clampedPercentage);
+            const clampedPercentage = Math.min(Math.max(fixedPercentage, 0), 100);
+            // console.log(clampedPercentage);
 
-    //         updateBackground(ID, clampedPercentage);
-    //     }
+            updateBackground(ID, clampedPercentage);
+        }
 
-    //     // Update previous mouse position
-    //     prevMouseX = currentMouseX;
-    // });
+        // Update previous mouse position
+        prevMouseX = currentMouseX;
+    });
 
     return mask;
 }

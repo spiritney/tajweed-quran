@@ -12,22 +12,4 @@
 		display: flex;
 		flex-direction: row-reverse;
 	}
-
-	.toper {
-		height: 12vh;
-		width: 1px;
-	}
-
-	.top-viewer {
-		position: relative;
-		background-color: green;
-		width: 100%;
-		height: 90vh;
-		overflow: hidden;
-		overflow-y: scroll;
-
-		/* padding-top:10vh;
-		height:60vh;
-		overflow: hidden; */
-	}
 </style>

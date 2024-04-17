@@ -3,6 +3,7 @@
 	import '$lib/style/index.css';
 	import { onMount } from 'svelte';
 	import {
+		ADD_MASKS_ATTR_BODY,
 		FIX_SCALE_ATTR_BODY,
 		GLOBAL_STYLES_ATTR_BODY
 	} from '$lib/constants.js';
@@ -10,13 +11,16 @@
 	import { addMasks } from '$lib/components/Menu/store/addMasks/functions/addMasks.js';
 	import { activateAnimatator } from '$lib/client/animation/index.js';
 	import { page } from '$app/stores';
-	
-	export let data;
+	import { getHTML } from './getHTML.js';
 
-	const { mainHTML, withoutScale } = data;
+	console.log(window.document.location.search);
+
+	const { mainHTML, withoutScale } = getHTML($page.params.pageID);
+
+	let loading = true;
 
 	onMount(() => {
-		window.onload = () => {
+		setTimeout(() => {
 			console.log('window.onload +page.svelte');
 			if (localStorage.getItem(GLOBAL_STYLES_ATTR_BODY) === 'true') {
 				addGlobalStyles();
@@ -26,39 +30,40 @@
 					addFixScale();
 				}
 			}
-			// if (localStorage.getItem(ADD_MASKS_ATTR_BODY) === 'true') {
-			// 	addMasks();
-			// }
-			activateAnimatator();
-		};
-
-		document.addEventListener('keydown', (e) => {
-			if (e.ctrlKey && e.altKey) {
-				switch (e.key) {
-					case 'ArrowRight':
-						const previousPage = Number(Number($page.params.pageID) - 1);
-						if (previousPage > 0) {
-							window.location.href = `/q/${previousPage}`;
-						}
-						break;
-					case 'ArrowLeft':
-						const nextPage = Number(Number($page.params.pageID) + 1);
-						if (nextPage <= 604) {
-							window.location.href = `/q/${nextPage}`;
-						}
-						break;
-					default:
-						break;
-				}
+			if (localStorage.getItem(ADD_MASKS_ATTR_BODY) === 'true') {
+				addMasks();
 			}
-		});
+			activateAnimatator();
+			loading = false;
+		}, 300);
+	});
+
+	document.addEventListener('keydown', (e) => {
+		if (e.ctrlKey && e.altKey) {
+			switch (e.key) {
+				case 'ArrowRight':
+					const previousPage = Number(Number($page.params.pageID) - 1);
+					if (previousPage > 0) {
+						window.location.href = `/q/${previousPage}`;
+					}
+					break;
+				case 'ArrowLeft':
+					const nextPage = Number(Number($page.params.pageID) + 1);
+					if (nextPage <= 604) {
+						window.location.href = `/q/${nextPage}`;
+					}
+					break;
+				default:
+					break;
+			}
+		}
 	});
 </script>
 
 <div class="container">
 	<div class="hider">
 		<div class="wrapper">
-			<main id="viewer" class="firstPage">
+			<main id="viewer" class="firstPage" style={loading ? 'display: none;' : ''}>
 				{@html mainHTML}
 			</main>
 		</div>

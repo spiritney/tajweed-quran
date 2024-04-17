@@ -22,12 +22,5 @@ export const addMasksToAyaht = () => {
     ayahs.forEach((ayah, i) => {
         const mask = createMask(i + 1);
         ayah.appendChild(mask);
-
-
-        // const scaleFactor = calculateScaleFactor(diff, ayah.scrollWidth);
-
-        // applyMaskStyles(mask, diff, scaleFactor);
     });
-
-
 }

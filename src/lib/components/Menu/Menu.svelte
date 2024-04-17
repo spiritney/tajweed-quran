@@ -118,7 +118,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		display: none;
+		display: flex;
 		flex-direction: column;
 		background-color: rgba(127, 255, 212, 0.1);
 		padding: 4px;

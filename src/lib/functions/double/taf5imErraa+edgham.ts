@@ -4,7 +4,6 @@ export function taf5imErraaWaEdgham(_text: string) {
 
     let text = _text;
 
-
     const searchtaf5imErraaWaEdgham = `لرَّ`;
     if (text.includes(searchtaf5imErraaWaEdgham)) {
 
@@ -12,7 +11,6 @@ export function taf5imErraaWaEdgham(_text: string) {
             searchtaf5imErraaWaEdgham,
             `<span_class="${edghamClassName}">${`ل`}</span><span_class="${taf5imErraaClassName}">${`رَّّ`}</span>`
         );
-
     }
 
     return text;
