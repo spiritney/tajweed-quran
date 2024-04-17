@@ -6,11 +6,15 @@
 
 	import Modal from '$lib/components/Modal/index.svelte';
 
-	import paint from '$lib/img/icons/paint.png';
-	import scale from '$lib/img/icons/scale.png';
-	import eraser from '$lib/img/icons/eraser.png';
-	import animation from '$lib/img/icons/animation.png';
-	import scroll from '$lib/img/icons/scroll.png';
+	import paint from '$lib/img/icons/512x512/paint.png';
+	import scale from '$lib/img/icons/512x512/scale.png';
+	import eraser from '$lib/img/icons/512x512/eraser.png';
+	import animation from '$lib/img/icons/512x512/animation.png';
+	import scroll from '$lib/img/icons/512x512/scroll.png';
+	import zoomIn from '$lib/img/icons/512x512/zoom-in.png';
+	import zoomOut from '$lib/img/icons/512x512/zoom-out.png';
+	import menu from '$lib/img/icons/512x512/menu.png';
+
 	import { getIsFixScaleActive } from './store/fixScale/getIsFixScaleActive';
 	import { toggleIsFixScaleActive } from './store/fixScale/toggleIsFixScaleActive';
 	import { getIsAddMasksActive } from './store/addMasks/getIsAddMasksActive';
@@ -20,6 +24,8 @@
 	let isFixAyatScaleActive = false;
 	let isAddMasksActive = true;
 	let isScrollbarActive = false;
+
+	let zoom = 1;
 
 	onMount(() => {
 		isGlobalStylesActive = getIsGlobalStylesActive();
@@ -53,6 +59,8 @@
 	};
 
 	let showModal = false;
+	let showModalScroll = false;
+	let showModalMenu = false;
 
 	const openAnimationModalShortcuts = () => {
 		showModal = true;
@@ -60,6 +68,24 @@
 </script>
 
 <div class="menu-list" id="top-menu">
+	<ButtonMenu
+		isActive={true}
+		title="Zoom in"
+		on:click={() => {
+			showModalScroll = true;
+		}}
+		src={zoomIn}
+	/>
+
+	<ButtonMenu
+		isActive={true}
+		title="Zoom in"
+		on:click={() => {
+			showModalScroll = true;
+		}}
+		src={zoomOut}
+	/>
+
 	<ButtonMenu
 		isActive={isGlobalStylesActive}
 		title="Activate global styles"
@@ -93,6 +119,12 @@
 		on:click={() => _toggleScrollbarActive()}
 		src={scroll}
 	/>
+	<ButtonMenu
+		isActive={isScrollbarActive}
+		title="menu"
+		on:click={() => (showModalMenu = true)}
+		src={menu}
+	/>
 	<Modal bind:showModal>
 		<h2 slot="header">List shortcuts of animations</h2>
 
@@ -111,6 +143,23 @@
 			</li>
 		</ul>
 	</Modal>
+
+	<Modal bind:showModal={showModalScroll}>
+		<h2 slot="header">Zoom</h2>
+
+		<ul class="definition-list">
+			<li><kbd>CTRL</kbd> + <kbd>Scroll up</kbd>: Zoom in</li>
+			<li><kbd>CTRL</kbd> + <kbd>Scroll down</kbd>: Zoom out</li>
+		</ul>
+	</Modal>
+
+	<Modal bind:showModal={showModalMenu}>
+		<h2 slot="header">Menu</h2>
+
+		<ul class="definition-list">
+			<li><kbd>CTRL</kbd> + <kbd>ALT</kbd>+ <kbd>m</kbd>: Show / Hide</li>
+		</ul>
+	</Modal>
 </div>
 
 <style>
@@ -123,5 +172,7 @@
 		background-color: rgba(127, 255, 212, 0.1);
 		padding: 4px;
 		gap: 4px;
+		z-index: 9999;
+		transform: translateX('1px');
 	}
 </style>

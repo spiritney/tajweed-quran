@@ -32,7 +32,7 @@ export function addTajweed(textParam: string, withColor = true) {
     text = text.replaceAll(END_of_AYAH, '');
 
     // add each word inside span with class kalemah
-    console.log(`line >${text}<`);
+    // console.log(`line >${text}<`);
 
     text = text.split(' ').map(word => word != "" ? `<span class="kalemah">${word}</span>` : "").join(' ');
 

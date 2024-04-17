@@ -13,8 +13,6 @@
 	import { page } from '$app/stores';
 	import { getHTML } from './getHTML.js';
 
-	console.log(window.document.location.search);
-
 	const { mainHTML, withoutScale } = getHTML($page.params.pageID);
 
 	let loading = true;
