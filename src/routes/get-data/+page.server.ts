@@ -1,6 +1,6 @@
-import { getDataAsText } from "$lib/data/getDataAsText";
+import { transformSuratTextToPages } from "$lib/data/transformSuratTextToPages";
 
 
 export const load = async () => {
-    getDataAsText()
+    transformSuratTextToPages()
 };

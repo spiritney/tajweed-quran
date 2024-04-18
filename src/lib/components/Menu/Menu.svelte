@@ -14,6 +14,7 @@
 	import zoomIn from '$lib/img/icons/512x512/zoom-in.png';
 	import zoomOut from '$lib/img/icons/512x512/zoom-out.png';
 	import menu from '$lib/img/icons/512x512/menu.png';
+	import video from '$lib/img/icons/512x512/video.png';
 
 	import { getIsFixScaleActive } from './store/fixScale/getIsFixScaleActive';
 	import { toggleIsFixScaleActive } from './store/fixScale/toggleIsFixScaleActive';
@@ -124,6 +125,12 @@
 		title="menu"
 		on:click={() => (showModalMenu = true)}
 		src={menu}
+	/>
+	<ButtonMenu
+		isActive={true}
+		title="video"
+		on:click={() => window.open('https://www.youtube.com/@Spiritney?sub_confirmation=1')}
+		src={video}
 	/>
 	<Modal bind:showModal>
 		<h2 slot="header">List shortcuts of animations</h2>

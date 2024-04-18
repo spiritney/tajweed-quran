@@ -91,9 +91,8 @@ async function downloadQuranSurah(surahNumber: number) {
 }
 
 export const getDataAsText = async () => {
-  await downloadQuranSurah(9);
 
-  // for (let surahNumber =9; surahNumber <= 9; surahNumber++) {
-  //   await downloadQuranSurah(surahNumber);
-  // }
+  for (let surahNumber = 1; surahNumber <= 114; surahNumber++) {
+    await downloadQuranSurah(surahNumber);
+  }
 }
