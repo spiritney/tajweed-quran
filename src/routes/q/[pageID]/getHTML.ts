@@ -1,9 +1,6 @@
-import { generateUrl } from "$lib/client/utils/generateUrl";
 import { getTextFromObject } from "$lib/client/utils/getTextFromObject";
 import { insertAyahDividers } from "$lib/client/utils/insertAyahDividers";
 import { END_of_AYAH } from "$lib/constants";
-import { getData } from "$lib/data/getData";
-import { pageRef } from "$lib/data/quran/pageRef";
 import { source } from "$lib/data/source";
 import { addTajweed } from "$lib/functions/addTajweed";
 
@@ -11,41 +8,18 @@ import { addTajweed } from "$lib/functions/addTajweed";
 const pagesWithoutScale = [-1]
 
 
-export const getHTML = (pageID: string) => {
+export const getHTML = async (pageID: string) => {
 
 
-    // const obj = {
-    //     "tafsir": {
-    //         "2_1": {
-    //             "text": "الم"
-    //         },
-    //         "2_2": {
-    //             "text": "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ"
-    //         },
-    //         "2_3": {
-    //             "text": "الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ"
-    //         },
-    //         "2_4": {
-    //             "text": "وَالَّذِينَ يُؤْمِنُونَ بِمَا أُنزِلَ إِلَيْكَ وَمَا أُنزِلَ مِن قَبْلِكَ وَبِالْآخِرَةِ هُمْ يُوقِنُونَ"
-    //         },
-    //         "2_5": {
-    //             "text": "أُولَٰئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ ۖ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ"
-    //         }
-    //     }
-    // }
+    let data = (await import(`../../../lib/data/quran/pages/page${pageID}.json`)).default
+    let dividers = (await import(`../../../lib/data/quran/dividers/page${pageID}.json`)).default
 
-    // console.log(getTextFromObject(obj));
+    // console.log("🚀 ~ getHTML ~ data:", data)
+    // console.log(getTextFromObject(data));
 
+    const source = insertAyahDividers(getTextFromObject(data), dividers).split(" * ")
+    console.log("🚀 ~ getHTML ~ source:", source)
 
-
-    // console.log(insertAyahDividers(getTextFromObject(obj), [
-    //     10, 15, 19, 27, 33
-    // ]));
-
-    // console.log(generateUrl(pageRef, 604));
-    
-
-    getData()
 
 
     let mainHTML = ``;
@@ -57,16 +31,20 @@ export const getHTML = (pageID: string) => {
 
     let regex = /⭐/;
 
-    source.filter((item) => item.page === +pageID).forEach((item, i) => {
+    source.forEach((item, i) => {
         while (regex.test(mainHTML)) {
             mainHTML = mainHTML.replace(regex, `<span class="ayahNumber">﴿${ayahNumber++}﴾</span>`);
         }
-        const theAyah = `<div class="inner-ayah ${withoutScale ? "without-scale" : ""}">${addTajweed(' ' + item.value + ' ' + END_of_AYAH)}</div>`
-        if (item.type === 'BASMALA') {
-            mainHTML += `<div id="ayah-${i + 1}" class="ayah-${i + 1} basmalah">${theAyah}</div>`;
-        } else {
-            mainHTML += `<div id="ayah-${i + 1}" class="ayah ayah-${i + 1}">${theAyah}</div>`;
-        }
+        
+        const theAyah = `<div class="inner-ayah ${withoutScale ? "without-scale" : ""}">${addTajweed(' ' + item + ' ' + END_of_AYAH)}</div>`
+
+        mainHTML += `<div id="ayah-${i + 1}" class="ayah ayah-${i + 1}">${theAyah}</div>`;
+
+        // if (item.type === 'BASMALA') {
+        //     mainHTML += `<div id="ayah-${i + 1}" class="ayah-${i + 1} basmalah">${theAyah}</div>`;
+        // } else {
+        //     mainHTML += `<div id="ayah-${i + 1}" class="ayah ayah-${i + 1}">${theAyah}</div>`;
+        // }
     });
     mainHTML = mainHTML.replace(regex, `<span class="ayahNumber">﴿${ayahNumber++}﴾</span>`);
 

@@ -39,6 +39,7 @@
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.1",
 		"@types/gsap": "^3.0.0",
-		"gsap": "^3.12.5"
+		"gsap": "^3.12.5",
+		"jsdom": "^24.0.0"
 	}
 }

@@ -9,7 +9,7 @@ export function getTextFromObject(obj: any) {
 
     const chapter = obj.tafsir[chapterKey];
 
-    text += " " + chapter.text;
+    text += " " + chapter.text + "⭐";
 
   }
 

@@ -13,11 +13,13 @@
 	import { page } from '$app/stores';
 	import { getHTML } from './getHTML.js';
 
-	const { mainHTML, withoutScale } = getHTML($page.params.pageID);
-
 	let loading = true;
+	let { mainHTML, withoutScale } = { mainHTML: '', withoutScale: false };
+	onMount(async () => {
+		const resp = await getHTML($page.params.pageID);
+		mainHTML = resp.mainHTML;
+		withoutScale = resp.withoutScale;
 
-	onMount(() => {
 		setTimeout(() => {
 			console.log('window.onload +page.svelte');
 			if (localStorage.getItem(GLOBAL_STYLES_ATTR_BODY) === 'true') {
