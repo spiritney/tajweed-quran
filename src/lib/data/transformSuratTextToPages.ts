@@ -11,7 +11,7 @@ const numCache = path.join(__dirname, './quran/', `.cache.num`)
 export const transformSuratTextToPages = async () => {
   await writeNumberToFile(numCache, Number(1));
 
-  for (let surahNumber = 1; surahNumber <= 114; surahNumber++) {
+  for (let surahNumber = 2; surahNumber <= 3; surahNumber++) {
     await (async (surahNumber: number) => {
 
       const pageNumber = await readNumberFromFile(numCache) || 1
@@ -26,14 +26,14 @@ export const transformSuratTextToPages = async () => {
 
 
       pages.forEach(async (item: any, index: number) => {
-        const textToSaveAsPage = JSON.stringify(item.trim().split("\n"), null, 2);
+        const ayatAsArray = item.trim().split("\n")
+        const textToSaveAsPage = JSON.stringify(ayatAsArray.map((ayat: any) => ayat.trim()), null, 2);
         const userPageNumber = pageNumber + index
 
         console.log(`---- Page N°${userPageNumber}`);
 
         const filePath = path.join(__dirname, './quran/pages/', `page${userPageNumber}.json`);
         await fs.writeFile(filePath, textToSaveAsPage, 'utf8');
-
 
       });
 

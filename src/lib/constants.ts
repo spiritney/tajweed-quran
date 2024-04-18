@@ -1,3 +1,8 @@
+
+
+export const alBasmalah = `بِسْمِ اِ۬للَّهِ اِ۬لرَّحْمَٰنِ اِ۬لرَّحِيمِ\n`
+
+
 export const maddJawazClassName = "madd-jawaz"
 export const maddLazemClassName = "madd-lazem"
 export const taf5imErraaClassName = "taf5im-erraa"
@@ -76,3 +81,4 @@ export const shadda = `ّ`
 export const mad = `ٰ`
 
 export const alTachkieel = [fatha, damma, kasra, sukun, shadda, mad];
+
