@@ -1,6 +1,6 @@
-import { getData2 } from "$lib/data/getData2";
+import { getDataAsText } from "$lib/data/getDataAsText";
 
 
 export const load = async () => {
-    getData2()
+    getDataAsText()
 };
