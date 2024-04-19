@@ -38,6 +38,7 @@ async function downloadQuranSurah(surahNumber: number) {
       if (surahNumber === 1) {
         // extractedText = extractedText.replaceAll("<br>", "")
         extractedText = extractedText.split("<br>")[2].trim().replaceAll("<br />\n", "\n")
+        extractedText = extractedText.replace("بِسْمِ اِ۬للَّهِ اِ۬لرَّحْمَٰنِ اِ۬لرَّحِيمِ\n", "")
         // console.log(extractedText);
       } else if (surahNumber === 9) {
         // extractedText = extractedText.replaceAll("<br>", "")
@@ -73,7 +74,7 @@ async function downloadQuranSurah(surahNumber: number) {
 
     const filePath = path.join(__dirname, './quran/text/', `${surahNumber}.txt`);
 
-    await fs.writeFile(filePath, JSON.stringify(extractedText, null, 2), 'utf8');
+    await fs.writeFile(filePath, JSON.stringify(extractedText.replaceAll(" \n", "\n"), null, 2), 'utf8');
 
 
 
@@ -93,6 +94,8 @@ async function downloadQuranSurah(surahNumber: number) {
 export const getDataAsText = async () => {
 
   for (let surahNumber = 1; surahNumber <= 114; surahNumber++) {
+    console.log(surahNumber);
+    
     await downloadQuranSurah(surahNumber);
   }
 }

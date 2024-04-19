@@ -4,7 +4,7 @@ import mappers from "$lib/data/quran/mappers.json";
 import { directoryPath, directoryToPagePath } from '$lib/constants';
 import { combineTwoPagesInOne } from './combineTwoPagesInOne';
 
-export const transformSuratTextToPages = async () => {
+export const combineNormalPages = async () => {
     try {
         // Get a list of file names
         const fileNames = await fs.readdir(directoryPath);
