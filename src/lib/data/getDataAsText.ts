@@ -58,7 +58,7 @@ async function downloadQuranSurah(surahNumber: number) {
 
         // Remove the last character (newline) from each line, if it exists
         for (let i = 0; i < lines.length; i++) {
-          lines[i] = lines[i].slice(0, -1);
+          lines[i] = lines[i].slice(0, -1).trim();
         }
 
         // Join the lines back into a single string

@@ -1,4 +1,4 @@
-import { transformSuratTextToPages } from "$lib/data/transformSuratTextToPages";
+import { transformSuratTextToPages } from "$lib/data/combineNormalPages";
 
 
 export const load = async () => {
