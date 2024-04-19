@@ -16,6 +16,7 @@ export const combineNormalPages = async () => {
         let flagCounter = 0;
         // Loop through file names with index
         for (let index = 0; index < fileNames.length; index++) {
+            console.log(`flagCounter: ${flagCounter}`);
 
 
             const fileName = fileNames[index];
@@ -40,7 +41,7 @@ export const combineNormalPages = async () => {
                     console.log(`i: ${index}, combine: ${numberPage}`);
                     await combineTwoPagesInOne(numberPage);
                     flagCounter++
-                    index++
+                    index = index - flagCounter
                     continue;
                 }
             } else {
