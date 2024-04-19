@@ -1,7 +1,4 @@
-import { getTextFromObject } from "$lib/client/utils/getTextFromObject";
-import { insertAyahDividers } from "$lib/client/utils/insertAyahDividers";
 import { AYAH_NUMBER_END, AYAH_NUMBER_START, BASMALAH, END_of_AYAH, SURAT, alBasmalah } from "$lib/constants";
-import { source } from "$lib/data/source";
 import { addTajweed } from "$lib/functions/addTajweed";
 import surat from "$lib/data/quran/surat.json";
 import { getNumberSurahFromText } from "./getNumberSurahFromText";

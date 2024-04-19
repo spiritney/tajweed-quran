@@ -4,12 +4,12 @@ export function taf5imErraaWaEdgham(_text: string) {
 
     let text = _text;
 
-    const searchtaf5imErraaWaEdgham = `لرَّ`;
+    const searchtaf5imErraaWaEdgham = `لرَّ`;
     if (text.includes(searchtaf5imErraaWaEdgham)) {
 
         text = text.replaceAll(
             searchtaf5imErraaWaEdgham,
-            `<span_class="${edghamClassName}">${`ل`}</span><span_class="${taf5imErraaClassName}">${`رَّّ`}</span>`
+            `<span_class="${edghamClassName}">${`ل`}</span><span_class="${taf5imErraaClassName}">${`رَّّ`}</span>`
         );
     }
 

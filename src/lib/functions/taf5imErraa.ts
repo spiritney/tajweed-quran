@@ -34,8 +34,10 @@ export function taf5imErraa(_text: string) {
         console.log(msg);
     }
 
-    // أو مشددة مثل: (الرَّاشدون).
-    const searchtaf5imErraa2 = `رََّ`;
+    // أو مشددة مثل: (الرَّاشدون).
+    // ر  ّ  َ
+    // /reh/afii57457/afii57454
+    const searchtaf5imErraa2 = `رَّ`;
     if (getPureText(text).includes(searchtaf5imErraa2)) {
         text = text.replaceAll(
             searchtaf5imErraa2,

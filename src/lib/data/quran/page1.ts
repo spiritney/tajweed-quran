@@ -30,7 +30,7 @@ console.log(getTextFromObject(obj));
 export const source = [
     {
         type: "BASMALA",
-        value: "بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ",
+        value: "بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ",
         page,
     },
     {

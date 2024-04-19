@@ -58,7 +58,7 @@ export function maddJawaz(_text: string) {
 
     const searchMaddJawaz5 = `يمِ` + ' ' + END_of_AYAH;
     if (text.includes(searchMaddJawaz5)) {
-        //    الرَّحِيمِ 
+        //    الرَّحِيمِ 
 
         text = text.replaceAll(
             searchMaddJawaz5,
