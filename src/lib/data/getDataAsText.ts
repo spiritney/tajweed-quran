@@ -1,3 +1,4 @@
+import { BASMALAH } from '$lib/constants';
 import fs from 'fs/promises'; 
 import path from 'path';
 
@@ -69,7 +70,7 @@ async function downloadQuranSurah(surahNumber: number) {
     if (surahNumber === 7) {
       extractedText = `__SURAH_${surahNumber}__\n` + extractedText
     } else {
-      extractedText = `__BASMALAH__\n` + `__SURAH_${surahNumber}__\n` + extractedText
+      extractedText = `${BASMALAH}\n` + `__SURAH_${surahNumber}__\n` + extractedText
     }
 
     if (surahNumber === 11) {

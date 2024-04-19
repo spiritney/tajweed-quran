@@ -67,7 +67,7 @@ main.firstPage {
 	/* background: aliceblue; */
 }
 
-.basmalah {
+.basmalah, .surah {
 	position: relative;
 	display: block;
 	width: var(--w);
@@ -105,7 +105,7 @@ main.firstPage {
 	/* padding-right: 0.05cm; */
 }
 
-.basmalah .inner-ayah {
+.basmalah .inner-ayah, .surah .inner-ayah{
 	justify-content: center !important;
 	gap: 0.25cm;
 }
@@ -147,7 +147,7 @@ main.firstPage {
 	color: #0095eb;
 }
 
-.basmalah {
+.basmalah,.surah {
 	text-align: center;
 }
 

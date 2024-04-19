@@ -1,9 +1,10 @@
 import { getTextFromObject } from "$lib/client/utils/getTextFromObject";
 import { insertAyahDividers } from "$lib/client/utils/insertAyahDividers";
-import { END_of_AYAH } from "$lib/constants";
+import { AYAH_NUMBER_END, AYAH_NUMBER_START, BASMALAH, END_of_AYAH, SURAT, alBasmalah } from "$lib/constants";
 import { source } from "$lib/data/source";
 import { addTajweed } from "$lib/functions/addTajweed";
-
+import surat from "$lib/data/quran/surat.json";
+import { getNumberSurahFromText } from "./getNumberSurahFromText";
 
 const pagesWithoutScale = [-1]
 
@@ -11,42 +12,33 @@ const pagesWithoutScale = [-1]
 export const getHTML = async (pageID: string) => {
 
 
-    let data = (await import(`../../../lib/data/quran/pages/page${pageID}.json`)).default
-    let dividers = (await import(`../../../lib/data/quran/dividers/page${pageID}.json`)).default
-
-    // console.log("🚀 ~ getHTML ~ data:", data)
-    // console.log(getTextFromObject(data));
-
-    const source = insertAyahDividers(getTextFromObject(data), dividers).split(" * ")
-    console.log("🚀 ~ getHTML ~ source:", source)
-
+    let data: string[] = (await import(`../../../lib/data/quran/pages/page${pageID}.json`)).default
 
 
     let mainHTML = ``;
 
-    // Replacing each occurrence of 'x' with the span containing the incremented ayahNumber
-    let ayahNumber = 1;
-
     const withoutScale = pagesWithoutScale.includes(+pageID)
 
-    let regex = /⭐/;
+    data.forEach((item, i) => {
 
-    source.forEach((item, i) => {
-        while (regex.test(mainHTML)) {
-            mainHTML = mainHTML.replace(regex, `<span class="ayahNumber">﴿${ayahNumber++}﴾</span>`);
+        if (item === BASMALAH) {
+            mainHTML += `<div id="ayah-${i + 1}" class="ayah-${i + 1} basmalah">${addTajweed(' ' + alBasmalah + ' ' + END_of_AYAH)}</div>`;
+        } else if (item.includes("__SURAH_")) {
+            const surahNumber = getNumberSurahFromText(item);
+            if (surahNumber) {
+                console.log("🚀 ~ surahNumber:", surahNumber)
+                const suratItem = surat[surahNumber][1]
+                mainHTML += `<div id="ayah-${i + 1}" class="ayah-${i + 1} surah">${SURAT + suratItem }</div>`;
+            }
+        } else {
+            // normal ayah
+            const theAyah = `<div class="inner-ayah ${withoutScale ? "without-scale" : ""}">${addTajweed(' ' + item + ' ' + END_of_AYAH)}</div>`.replaceAll("(", AYAH_NUMBER_START).replaceAll(")", AYAH_NUMBER_END)
+            mainHTML += `<div id="ayah-${i + 1}" class="ayah ayah-${i + 1}">${theAyah}</div>`;
+
         }
-        
-        const theAyah = `<div class="inner-ayah ${withoutScale ? "without-scale" : ""}">${addTajweed(' ' + item + ' ' + END_of_AYAH)}</div>`
+        console.log(item);
 
-        mainHTML += `<div id="ayah-${i + 1}" class="ayah ayah-${i + 1}">${theAyah}</div>`;
-
-        // if (item.type === 'BASMALA') {
-        //     mainHTML += `<div id="ayah-${i + 1}" class="ayah-${i + 1} basmalah">${theAyah}</div>`;
-        // } else {
-        //     mainHTML += `<div id="ayah-${i + 1}" class="ayah ayah-${i + 1}">${theAyah}</div>`;
-        // }
     });
-    mainHTML = mainHTML.replace(regex, `<span class="ayahNumber">﴿${ayahNumber++}﴾</span>`);
 
     return {
         mainHTML,

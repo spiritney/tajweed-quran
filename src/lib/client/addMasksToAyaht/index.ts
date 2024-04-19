@@ -15,6 +15,7 @@ export const addMasksToAyaht = () => {
             maskBasmalah.setAttribute('current_percentage', "100");
         });
     });
+    
 
     // For ayah's
     const ayahs = document.querySelectorAll('.ayah');
