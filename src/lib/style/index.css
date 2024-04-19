@@ -67,7 +67,8 @@ main.firstPage {
 	/* background: aliceblue; */
 }
 
-.basmalah, .surah {
+.basmalah,
+.surah {
 	position: relative;
 	display: block;
 	width: var(--w);
@@ -97,7 +98,8 @@ main.firstPage {
 
 .inner-ayah.without-scale {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
+	gap: 0.25cm;
 }
 
 .kalemah {
@@ -105,7 +107,8 @@ main.firstPage {
 	/* padding-right: 0.05cm; */
 }
 
-.basmalah .inner-ayah, .surah .inner-ayah{
+.basmalah .inner-ayah,
+.surah .inner-ayah {
 	justify-content: center !important;
 	gap: 0.25cm;
 }
@@ -147,7 +150,8 @@ main.firstPage {
 	color: #0095eb;
 }
 
-.basmalah,.surah {
+.basmalah,
+.surah {
 	text-align: center;
 }
 

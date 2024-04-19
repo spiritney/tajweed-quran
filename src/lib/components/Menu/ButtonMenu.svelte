@@ -18,16 +18,18 @@
 		border: 1px solid transparent;
 		padding: 2px;
 		filter: grayscale(100%);
+		
 	}
 
-	button:hover {
-		background-color: #12410139;
+	button:disabled {
+		cursor: not-allowed;
 	}
 
 	button.active {
 		background-color: #12410139;
 		border: 1px solid #124101;
 		filter: grayscale(0%);
+		cursor: pointer;
 	}
 
 	img {

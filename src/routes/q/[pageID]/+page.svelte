@@ -12,6 +12,7 @@
 	import { activateAnimatator } from '$lib/client/animation/index.js';
 	import { page } from '$app/stores';
 	import { getHTML } from './getHTML.js';
+	import { setIsFixScaleActive } from '$lib/components/Menu/store/fixScale/setIsFixScaleActive.js';
 
 	let loading = true;
 	let { mainHTML, withoutScale } = { mainHTML: '', withoutScale: false };
@@ -26,10 +27,13 @@
 				addGlobalStyles();
 			}
 			// add by default
-			addFixScale();
+			if (!localStorage.getItem(FIX_SCALE_ATTR_BODY)) {
+				setIsFixScaleActive(true)
+			}
+			//
 			if (localStorage.getItem(FIX_SCALE_ATTR_BODY) === 'true') {
 				if (!withoutScale) {
-					addFixScale();
+					setIsFixScaleActive(true)
 				}
 			}
 			if (localStorage.getItem(ADD_MASKS_ATTR_BODY) === 'true') {

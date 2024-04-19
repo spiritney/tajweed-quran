@@ -2,6 +2,7 @@ import { AYAH_NUMBER_END, AYAH_NUMBER_START, BASMALAH, END_of_AYAH, SURAT, alBas
 import { addTajweed } from "$lib/functions/addTajweed";
 import surat from "$lib/data/quran/surat.json";
 import { getNumberSurahFromText } from "./getNumberSurahFromText";
+import { getIsFixScaleActive } from "$lib/components/Menu/store/fixScale/getIsFixScaleActive";
 
 const pagesWithoutScale = [-1]
 
@@ -14,18 +15,24 @@ export const getHTML = async (pageID: string) => {
 
     let mainHTML = ``;
 
-    const withoutScale = pagesWithoutScale.includes(+pageID)
+    const withoutScale = pagesWithoutScale.includes(+pageID) || getIsFixScaleActive() === false
 
     data.forEach((item, i) => {
 
         if (item === BASMALAH) {
-            mainHTML += `<div id="ayah-${i + 1}" class="ayah-${i + 1} basmalah">${addTajweed(' ' + alBasmalah + ' ' + END_of_AYAH)}</div>`;
+            let htmlOfBasmalah = addTajweed(' ' + alBasmalah + ' ' + END_of_AYAH)
+            // remove  () from basmalah
+
+            htmlOfBasmalah = htmlOfBasmalah.replaceAll("()", '');
+
+
+            mainHTML += `<div id="ayah-${i + 1}" class="ayah-${i + 1} basmalah">${htmlOfBasmalah}</div>`;
         } else if (item.includes("__SURAH_")) {
             const surahNumber = getNumberSurahFromText(item);
             if (surahNumber) {
-                console.log("🚀 ~ surahNumber:", surahNumber)
+                // console.log("🚀 ~ surahNumber:", surahNumber)
                 const suratItem = surat[surahNumber][1]
-                mainHTML += `<div id="ayah-${i + 1}" class="ayah-${i + 1} surah">${SURAT + suratItem }</div>`;
+                mainHTML += `<div id="ayah-${i + 1}" class="ayah-${i + 1} surah">${SURAT + suratItem}</div>`;
             }
         } else {
             // normal ayah
@@ -33,8 +40,7 @@ export const getHTML = async (pageID: string) => {
             mainHTML += `<div id="ayah-${i + 1}" class="ayah ayah-${i + 1}">${theAyah}</div>`;
 
         }
-        console.log(item);
-
+        // console.log(item);
     });
 
     return {

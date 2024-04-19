@@ -1,6 +1,8 @@
 import { FIX_SCALE_ATTR_BODY } from "$lib/constants";
 
 export const rmFixScale = () => {
+    console.log("rmFixScale");
+    
     localStorage.setItem(FIX_SCALE_ATTR_BODY, 'false');
 
     // Select all ayahs
@@ -9,4 +11,6 @@ export const rmFixScale = () => {
     ayahs.forEach((ayah) => {
         ayah.style.transform = `scaleX(1)`;
     });
+
+    window.location.reload();
 }

@@ -15,18 +15,18 @@
 	import zoomOut from '$lib/img/icons/512x512/zoom-out.png';
 	import menu from '$lib/img/icons/512x512/menu.png';
 	import video from '$lib/img/icons/512x512/video.png';
+	import arrow from '$lib/img/icons/512x512/arrow.png';
 
 	import { getIsFixScaleActive } from './store/fixScale/getIsFixScaleActive';
 	import { toggleIsFixScaleActive } from './store/fixScale/toggleIsFixScaleActive';
 	import { getIsAddMasksActive } from './store/addMasks/getIsAddMasksActive';
 	import { toggleIsAddMasksActive } from './store/addMasks/toggleIsFixScaleActive';
+	import { page } from '$app/stores';
 
 	let isGlobalStylesActive = false;
-	let isFixAyatScaleActive = false;
+	let isFixAyatScaleActive = true;
 	let isAddMasksActive = true;
 	let isScrollbarActive = false;
-
-	let zoom = 1;
 
 	onMount(() => {
 		isGlobalStylesActive = getIsGlobalStylesActive();
@@ -125,6 +125,30 @@
 		title="menu"
 		on:click={() => (showModalMenu = true)}
 		src={menu}
+	/>
+	<ButtonMenu
+		isActive={Number(Number($page.params.pageID) - 1) > 0}
+		disabled={Number(Number($page.params.pageID) - 1) <= 0}
+		title="Previous ayah"
+		on:click={() => {
+			const previousPage = Number(Number($page.params.pageID) - 1);
+			if (previousPage > 0) {
+				window.location.href = `/q/${previousPage}`;
+			}
+		}}
+		src={arrow}
+	/>
+	<ButtonMenu
+		isActive={Number(Number($page.params.pageID) + 1) <= 604}
+		title="Next ayah"
+		on:click={() => {
+			const nextPage = Number(Number($page.params.pageID) + 1);
+			if (nextPage <= 604) {
+				window.location.href = `/q/${nextPage}`;
+			}
+		}}
+		style="transform: rotate(180deg);"
+		src={arrow}
 	/>
 	<ButtonMenu
 		isActive={true}

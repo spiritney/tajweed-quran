@@ -38,5 +38,7 @@ export function addTajweed(textParam: string, withColor = true) {
 
     text = text.replaceAll("_", ' ');
 
+   
+
     return text;
 }

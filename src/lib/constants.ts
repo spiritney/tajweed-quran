@@ -1,10 +1,13 @@
 
 
-export const alBasmalah = `بِسْمِ اِ۬للَّهِ اِ۬لرَّحْمَٰنِ اِ۬لرَّحِيمِ`
+export const alBasmalah = ` بِسْمِ اِ۬للَّهِ اِ۬لرَّحْمَٰنِ اِ۬لرَّحِيمِ ()`
 export const BASMALAH = "__BASMALAH__"
 export const SURAT = `سورة `
 export const AYAH_NUMBER_START = "﴿"
 export const AYAH_NUMBER_END = "﴾"
+
+export const PURE_AYAH_NUMBER_START = ")"
+export const PURE_AYAH_NUMBER_END = "("
 
 export const maddJawazClassName = "madd-jawaz"
 export const maddLazemClassName = "madd-lazem"
