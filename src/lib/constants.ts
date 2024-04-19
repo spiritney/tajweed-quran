@@ -82,6 +82,5 @@ export const mad = `ٰ`
 
 export const alTachkieel = [fatha, damma, kasra, sukun, shadda, mad];
 
-
-export const directoryPath = './src/lib/data/quran/normal-pages';
-export const directoryToPagePath = './src/lib/data/quran/pages';
+export const DIRECTORY_PATH = './src/lib/data/quran/normal-pages';
+export const DIRECTORY_TO_PAGE_PATH = './src/lib/data/quran/pages';

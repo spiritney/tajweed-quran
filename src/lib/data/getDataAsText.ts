@@ -1,4 +1,4 @@
-import fs from 'fs/promises'; // Use import for promises
+import fs from 'fs/promises'; 
 import path from 'path';
 
 import { fileURLToPath } from 'url';
@@ -6,10 +6,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-
 
 async function downloadQuranSurah(surahNumber: number) {
   const url = `https://surahquran.com/qaloon/${surahNumber}.` + "html";
@@ -45,6 +42,8 @@ async function downloadQuranSurah(surahNumber: number) {
         extractedText = extractedText.split("\n\n")[2].trim()
         // console.log(extractedText);
       } else {
+        extractedText = html.substring(startIndex + 3, endIndex)
+
         if (!extractedText) throw Error("error 1");
         extractedText = extractedText.trim().trim()
         if (!extractedText) throw Error("error 2");
@@ -55,17 +54,8 @@ async function downloadQuranSurah(surahNumber: number) {
         extractedText = extractedText.trim().replaceAll("<br>", "")
         if (!extractedText) throw Error("error 5");
 
-        const lines = extractedText.split(/\r?\n/);
-
-        // Remove the last character (newline) from each line, if it exists
-        for (let i = 0; i < lines.length; i++) {
-          lines[i] = lines[i].slice(0, -1).trim();
-        }
-
         // Join the lines back into a single string
-        extractedText = lines.join("\n").replaceAll("\n\n\n\n\n", "").replaceAll("\n\n\n\n", "").replaceAll("\n\n\n", "");
-
-        //.replaceAll("\n","").split("<br>")[2].split("<br />"); // Extract text between tags (offset by 3 to skip opening `<p>` and closing `</p>`)
+        extractedText = extractedText.replaceAll("\n\n\n\n\n", "").replaceAll("\n\n\n\n", "").replaceAll("\n\n\n", "");
       }
 
     } else {
@@ -74,17 +64,27 @@ async function downloadQuranSurah(surahNumber: number) {
 
     const filePath = path.join(__dirname, './quran/text/', `${surahNumber}.txt`);
 
-    await fs.writeFile(filePath, JSON.stringify(extractedText.replaceAll(" \n", "\n"), null, 2), 'utf8');
+    extractedText = extractedText.replaceAll(" \n", "\n")
 
+    if (surahNumber === 7) {
+      extractedText = `__SURAH_${surahNumber}__\n` + extractedText
+    } else {
+      extractedText = `__BASMALAH__\n` + `__SURAH_${surahNumber}__\n` + extractedText
+    }
 
+    if (surahNumber === 11) {
+      extractedText = extractedText.replace(`(12)`, `\n\n(12)`)
+    }
 
-    // extractedText.split("\n\n").forEach(async (item, i) => {
-    //   console.log(item);
-    //   const filePath = path.join(__dirname, './quran/surahNumbers2/', `surahNumber${surahNumber + i}.json`);
-    //   await fs.writeFile(filePath, JSON.stringify(item.trim().split("\n"), null, 2), 'utf8');
-    //   console.log(`Downloaded surahNumber ${surahNumber} to ${filePath}`);
-    // });
+    if (surahNumber === 12) {
+      extractedText = extractedText.replace(`(52) \n`, `(52)\n\n`)
+    }
+    if (surahNumber === 74) {
+      extractedText = extractedText.replace(`(18)\n\n`, `(18)`)
+      extractedText = extractedText.replace(`(17)`, `(17)\n\n`)
+    }
 
+    await fs.writeFile(filePath, JSON.stringify(extractedText, null, 2), 'utf8');
 
   } catch (error) {
     console.error(`Error downloading surahNumber ${surahNumber}:`, error);
@@ -92,10 +92,8 @@ async function downloadQuranSurah(surahNumber: number) {
 }
 
 export const getDataAsText = async () => {
-
   for (let surahNumber = 1; surahNumber <= 114; surahNumber++) {
     console.log(surahNumber);
-    
     await downloadQuranSurah(surahNumber);
   }
 }
