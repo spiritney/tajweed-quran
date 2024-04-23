@@ -22,7 +22,7 @@
 		withoutScale = resp.withoutScale;
 
 		setTimeout(() => {
-			console.log('window.onload +page.svelte');
+			// console.log('window.onload +page.svelte');
 			if (localStorage.getItem(GLOBAL_STYLES_ATTR_BODY) === 'true') {
 				addGlobalStyles();
 			}

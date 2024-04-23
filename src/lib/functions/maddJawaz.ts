@@ -1,6 +1,7 @@
 import { PURE_AYAH_NUMBER_END, kasra } from "$lib/constants";
 import { damma } from "$lib/constants";
 import { END_of_AYAH, maddJawazClassName } from "$lib/constants";
+import { replaceLast } from "./replaceLast";
 
 export function maddJawaz(_text: string) {
     let text = _text;
@@ -19,7 +20,7 @@ export function maddJawaz(_text: string) {
 
     if (text.includes(PURE_AYAH_NUMBER_END)) {
         const arrayOfWords = text.split(" ")
-        console.log(arrayOfWords);
+        // console.log(arrayOfWords);
 
 
         let currentIndex = -1;
@@ -28,19 +29,19 @@ export function maddJawaz(_text: string) {
                 // console.log(currentIndex);
                 let lastWord = arrayOfWords[currentIndex - 1]
 
-                console.log("---------");
-                console.log(lastWord);
-                console.log("---------");
+                // console.log("---------");
+                // console.log(lastWord);
+                // console.log("---------");
 
                 el7roufList.forEach(el7arf => {
                     if (lastWord.includes(`${el7arf}`)) {
                         ma9ablahaList.forEach(elChakel => {
                             const searchMaddJawaz1 = `${elChakel}${el7arf}`
                             if (lastWord.includes(searchMaddJawaz1)) {
-                                lastWord = lastWord.replaceAll(
-                                    searchMaddJawaz1,
-                                    `${elChakel}<span_class="${maddJawazClassName}">${el7arf}</span>`
-                                );
+                                lastWord = replaceLast(lastWord, searchMaddJawaz1, `${elChakel}<span_class="${maddJawazClassName}">${el7arf}</span>`)
+
+
+
                             }
                         });
                     }
@@ -51,6 +52,7 @@ export function maddJawaz(_text: string) {
             }
         }
     }
+
 
 
 
