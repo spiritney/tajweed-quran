@@ -55,12 +55,12 @@ export function edgham(_text: string) {
     // ellam + el7arf + shadda
 
     el7roufAlAbjadiya.forEach((el7arf) => {
-        if (el7arf !== ellam ) {
+        if (el7arf !== ellam) {
             const searchedghamA2 = ellam + el7arf + shadda
 
             if (getPureText(text).includes(searchedghamA2)) {
-                console.log("el7arf=>", el7arf);
-                console.log("ellam + el7arf + shadda=>", `${ellam} ${el7arf} ${shadda}`);
+                // console.log("el7arf=>", el7arf);
+                // console.log("ellam + el7arf + shadda=>", `${ellam} ${el7arf} ${shadda}`);
 
                 const words = text.split(" ")
                 const _words: string[] = []
@@ -75,7 +75,7 @@ export function edgham(_text: string) {
                         _words.push(word)
                     }
                 });
-                console.log("words", words);
+                // console.log("words", words);
 
                 text = _words.join(" ")
                 // text = text.replaceAll(
@@ -167,6 +167,40 @@ export function edgham(_text: string) {
             `<span_class="${edghamClassName}">${searchedgham6}</span>`
         );
     }
+
+
+
+    if (getPureText(text).includes("مّ") && getPureText(text).includes("ن")) {
+
+        const words = text.split(" ")
+        const _words: string[] = []
+
+        words.forEach(word => {
+            if (word.includes("مّ") && word.includes("ن")) {
+
+                // console.log(text);
+
+                _words.push(word.replace(
+                    "ن",
+                    `<span_class="${edghamClassName}">ن</span>`
+                ))
+            } else {
+                _words.push(word)
+            }
+        });
+
+        text = _words.join(" ")
+        // text = text.replaceAll(
+        //     ellam,
+        //     `<span_class="${edghamClassName}">${ellam}</span>`
+        // );
+    }
+
+
+
+    // //////////////////////
+
+
 
 
     // /////////////////////////////////////
