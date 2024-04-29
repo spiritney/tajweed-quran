@@ -21,6 +21,7 @@ export const END_of_AYAH = "END_of_AYAH"
 
 // Design
 export const targetWidth = 380;
+export const normalTargetWidth = 532;
 export const targetWidthBorders = 50;
 export const marginParam = 50;
 export const targetWidthWithoutMargin = targetWidth;

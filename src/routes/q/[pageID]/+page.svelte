@@ -13,6 +13,7 @@
 	import { page } from '$app/stores';
 	import { getHTML } from './getHTML.js';
 	import { setIsFixScaleActive } from '$lib/components/Menu/store/fixScale/setIsFixScaleActive.js';
+	import { getTargetWidth } from '$lib/components/Menu/store/fixScale/getTargetWidth.js';
 
 	let loading = true;
 	let { mainHTML, withoutScale } = { mainHTML: '', withoutScale: false };
@@ -22,18 +23,24 @@
 		withoutScale = resp.withoutScale;
 
 		setTimeout(() => {
+			// Get the root element
+			const rootElement = document.documentElement;
+
+			// Set the CSS variable with its name and value
+			rootElement.style.setProperty('--w', `${getTargetWidth()}px`);
+
 			// console.log('window.onload +page.svelte');
 			if (localStorage.getItem(GLOBAL_STYLES_ATTR_BODY) === 'true') {
 				addGlobalStyles();
 			}
 			// add by default
 			if (!localStorage.getItem(FIX_SCALE_ATTR_BODY)) {
-				setIsFixScaleActive(true)
+				setIsFixScaleActive(true);
 			}
 			//
 			if (localStorage.getItem(FIX_SCALE_ATTR_BODY) === 'true') {
 				if (!withoutScale) {
-					setIsFixScaleActive(true)
+					setIsFixScaleActive(true);
 				}
 			}
 			if (localStorage.getItem(ADD_MASKS_ATTR_BODY) === 'true') {

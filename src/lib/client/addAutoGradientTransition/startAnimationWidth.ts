@@ -19,7 +19,6 @@ export const startAnimationWidth = () => {
     setGlobalActiveLine(0); // Reset index for loop
 
     const masks = document.querySelectorAll('.mask');
-    const targetWidth = 0;
     let refTimeOut: any = null
 
     function animate() {
@@ -37,7 +36,7 @@ export const startAnimationWidth = () => {
             smoothScrollToElement(ayahIDWrapper(activeLineNumber));
         }
 
-        animateElement(mask, targetWidth, LINE_DURATION, LINE_GAP);
+        animateElement(mask, LINE_DURATION, LINE_GAP);
         setGlobalActiveLine(Number(activeLineNumber) + 1) // index++
         scrollByY(48)
 

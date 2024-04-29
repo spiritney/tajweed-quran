@@ -74,5 +74,58 @@ export function ghona(_text: string) {
     }
 
 
+    const searchghona6 = ` إِنَّ`;
+    if (text.includes(searchghona6)) {
+      
+        text = text.replaceAll(
+            searchghona6,
+            `إِ<span_class="${ghonaClassName}">نَّ</span> `
+        );
+    }
+
+    const searchghona7 = `ا۬ن`;
+    if (text.includes(searchghona7)) {
+      
+        text = text.replaceAll(
+            searchghona7,
+            `اِ۬<span_class="${ghonaClassName}">ن</span>`
+        );
+    }
+
+    const searchghona8 = `ُن`;
+    if (text.includes(searchghona8)) {
+      
+        text = text.replaceAll(
+            searchghona8,
+            `ُ<span_class="${ghonaClassName}">ن</span>`
+        );
+    }
+
+    const searchghona9 = `ٞۖ وَ`;
+    if (text.includes(searchghona9)) {
+      
+        text = text.replaceAll(
+            searchghona9,
+            `ٞۖ <span_class="${ghonaClassName}">وَ</span>`
+        );
+    }
+
+    const searchghona10 = `نَّ`;
+    if (text.includes(searchghona10)) {
+        text = text.replaceAll(
+            searchghona10,
+            `<span_class="${ghonaClassName}">نَّ</span>`
+        );
+    }
+
+    const searchghona11 = `م بِ`;
+    if (text.includes(searchghona11)) {
+        text = text.replaceAll(
+            searchghona11,
+            `<span_class="${ghonaClassName}">م</span> بِ`
+        );
+    }
+
+
     return text;
 }

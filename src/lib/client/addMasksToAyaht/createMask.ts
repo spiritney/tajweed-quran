@@ -1,8 +1,10 @@
-import { INIT_BG, targetWidth, targetWidthBorders } from "$lib/constants";
+import { getTargetWidth } from "$lib/components/Menu/store/fixScale/getTargetWidth";
+import { INIT_BG,  targetWidthBorders } from "$lib/constants";
 import { getBgTransperncy } from "./getBgTransperncy";
 import { getBoundriesPage } from "./getBoundriesPage";
 
 export const createMask = (index: number) => {
+    const _targetWidth = getTargetWidth();
     const ID = `mask-${index + 1}`;
     const mask = document.createElement('span');
     mask.style.height = '100%';
@@ -10,9 +12,9 @@ export const createMask = (index: number) => {
     mask.style.top = '0';
     mask.style.margin = '0';
     mask.style.padding = '0';
-    mask.style.width = `${targetWidth + targetWidthBorders}px`;  // Pre-calculate the width for clarity
+    mask.style.width = `${_targetWidth + targetWidthBorders}px`;  // Pre-calculate the width for clarity
     mask.className = 'mask';
-    mask.style.left = `calc(30% - ${(targetWidth / 2)}px)`;  // Use calc() for better readability
+    mask.style.left = `calc(30% - ${(_targetWidth / 2)}px)`;  // Use calc() for better readability
     mask.style.overflow = 'hidden';
     mask.setAttribute('id', ID);
     mask.style.background = INIT_BG;
